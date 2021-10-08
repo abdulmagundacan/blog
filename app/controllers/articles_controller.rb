@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :publish]
 
   # GET /articles
   def index
@@ -43,6 +43,12 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
+  end
+
+  # PATCH /articles/1/publish
+  def publish
+    @article.publish
+    render :show
   end
 
   private
